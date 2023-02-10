@@ -1,19 +1,30 @@
-import { AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import http from "../http-common";
-import Product from "../types/Product.type";
 
 const responseBody = (response: AxiosResponse) => response.data;
 
 const productRequests = {
-  get: (url: string) => http.get<string[]>(url).then(responseBody),
+  get: (url: string, config?: AxiosRequestConfig) =>
+    http.get(url, config).then(responseBody),
 };
 
 class ProductService {
   getSingleProduct(isbn: string): Promise<string[]> {
-    return productRequests.get("?sku=" + isbn + "&isPromoter=true");
+    return productRequests.get("", {
+      params: {
+        sku: isbn,
+        isPromoter: true,
+      },
+    });
   }
   getByModelOrSku(isbn: string): Promise<Array<string[]>> {
-    return productRequests.get("?model=" + isbn + "&isList=true");
+    // return productRequests.get("?model=" + isbn + "&isList=true");
+    return productRequests.get("", {
+      params: {
+        model: isbn,
+        isList: true,
+      },
+    });
   }
 }
 

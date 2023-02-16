@@ -1,8 +1,8 @@
 import React, { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../../store/OrderSlice";
-import { selectPartner, setDate } from "../../../store/PersonaSlice";
-import { DatePicker, DatePickerProps, InputNumber, Select } from "antd";
+import { selectPartner } from "../../../store/PersonaSlice";
+import { InputNumber, Select } from "antd";
 import SearchModal from "../components/SearchModal";
 import { RootState } from "../../../store";
 import Product from "../../../types/Product.type";
@@ -14,7 +14,7 @@ import ListProducts from "../components/ListProducts";
 const Cart: React.FC = () => {
   const order = useSelector((state: RootState) => state.order.order);
   const partner = useSelector((state: RootState) => state.persona.select);
-  const dateSelect = useSelector((state: RootState) => state.persona.date);
+  // const dateSelect = useSelector((state: RootState) => state.persona.date);
   const [partners, setPartners] = useState<Partner[]>([]);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -125,12 +125,12 @@ const Cart: React.FC = () => {
     }
   };
 
-  const onChangeDatePicker: DatePickerProps["onChange"] = (
-    date,
-    dateString,
-  ) => {
-    dispatch(setDate(dateString));
-  };
+  // const onChangeDatePicker: DatePickerProps["onChange"] = (
+  //   date,
+  //   dateString,
+  // ) => {
+  //   dispatch(setDate(dateString));
+  // };
 
   return (
     <Fragment>
@@ -157,19 +157,6 @@ const Cart: React.FC = () => {
               />
             </div>
             <small className="form-text text-muted">Seleccionar Socio.</small>
-          </div>
-          <div className="col-span-1">
-            <div>
-              <DatePicker
-                format={"YYYY-MM-DD"}
-                style={{ width: "80%" }}
-                placeholder="Seleccionar fecha Cierre"
-                onChange={onChangeDatePicker}
-              />
-            </div>
-            <small className="form-text text-muted">
-              Seleccionar fecha de Cierre
-            </small>
           </div>
         </div>
       </div>
@@ -274,19 +261,6 @@ const Cart: React.FC = () => {
             <small className="form-text text-muted">
               Precio de lista del producto.
             </small>
-          </div>
-          <div className="col-span-1">
-            <div className="input-group">
-              <div className="input-group-prepend">S/.</div>
-              <input
-                type="text"
-                className="w-full"
-                placeholder="Precio Director"
-                value={data.priceOfferDirector}
-                disabled
-              />
-            </div>
-            <small className="form-text text-muted">Precio Director.</small>
           </div>
           <div className="col-span-1">
             <div className="input-group">

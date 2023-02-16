@@ -3,20 +3,13 @@ import http from "../http-common";
 
 const responseBody = (response: AxiosResponse) => response.data;
 
-interface BodyCreate {
-  fechaCierre: string;
-  xmlDetalle: string;
-  personaIns: string;
-  socioId: string;
-}
-
 const orderRequests = {
-  post: (url: string, body: BodyCreate, config: AxiosRequestConfig) =>
+  post: (url: string, body: any, config: AxiosRequestConfig) =>
     http.post<any>(url, body, config).then(responseBody),
 };
 
 const createOrder = (
-  body: BodyCreate,
+  body: any,
 ): Promise<any> => {
   return orderRequests.post("", body, {
     headers: { "Content-Type": "multipart/form-data" },

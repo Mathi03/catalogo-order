@@ -124,7 +124,7 @@ if (isset($_GET["model"]) && isset($_GET["isList"])) {
         header("HTTP/1.0 401 Unauthorized", true, 401);
         exit();
     }
-} else if (isset($_POST["fechaCierre"]) && isset($_POST["xmlDetalle"]) && isset($_POST["personaIns"]) && isset($_POST["socioId"])) {
+} else if (isset($_POST["xmlDetalle"]) && isset($_POST["personaIns"]) && isset($_POST["socioId"])) {
     $_idPersona        = $_POST["personaIns"];
     $_codigoOrder   = getNumberOrder($_idPersona);
     $_idDirector    = $_POST["personaIns"];

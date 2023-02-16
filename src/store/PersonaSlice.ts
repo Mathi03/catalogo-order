@@ -4,13 +4,13 @@ import Partner from "../types/Partner.type";
 interface PersonState {
   partners: Partner[];
   select: string;
-  date: string;
+  // date: string;
 }
 
 const initialState: PersonState = {
   partners: [],
   select: "",
-  date: "",
+  // date: "",
 };
 
 export const personaSlice = createSlice({
@@ -24,17 +24,17 @@ export const personaSlice = createSlice({
     selectPartner: (state, action: PayloadAction<string>) => {
       state.select = action.payload;
     },
-    setDate: (state, action: PayloadAction<string>) => {
-      state.date = action.payload;
-    },
+    // setDate: (state, action: PayloadAction<string>) => {
+    //   state.date = action.payload;
+    // },
     cleanValues: (state) => {
       state.select = "";
-      state.date = "";
+      // state.date = "";
     },
   },
 });
 
-export const { addPartners, selectPartner, setDate, cleanValues } =
+export const { addPartners, selectPartner, cleanValues } =
   personaSlice.actions;
 
 export default personaSlice.reducer;

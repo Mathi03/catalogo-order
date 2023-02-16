@@ -14,12 +14,12 @@ const App: React.FC = () => {
 
   const order = useSelector((state: RootState) => state.order.order);
   const partner = useSelector((state: RootState) => state.persona.select);
-  const date = useSelector((state: RootState) => state.persona.date);
+  // const date = useSelector((state: RootState) => state.persona.date);
 
   useEffect(() => {}, []);
 
   const generateOrder = async () => {
-    if (order.length !== 0 && partner && date) {
+    if (order.length !== 0 && partner) {
       let tempXML = "<Root>";
       order.forEach((o, i) => {
         i++;
@@ -35,7 +35,7 @@ const App: React.FC = () => {
       });
       tempXML += "</Root>";
       let jsonTotal = {
-        fechaCierre: date,
+        // fechaCierre: date,
         xmlDetalle: tempXML,
         personaIns: window.setting.personId,
         socioId: partner,

@@ -46,10 +46,6 @@ const ListProducts: React.FC<PropsListProducts> = ({
                 <span>Precio Oferta</span>
                 <p>{p.priceOfferPartner}</p>
               </div>
-              <div className="flex justify-between">
-                <span>Precio Director</span>
-                <p>{p.priceOfferDirector}</p>
-              </div>
             </div>
             <a
               href="#"

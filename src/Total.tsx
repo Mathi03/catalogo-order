@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "./store";
 
@@ -8,24 +8,26 @@ const Total = () => {
     .reduce(
       (acumulador, actual) =>
         acumulador + Number(actual.priceList) * Number(actual.quantity),
-      0
+      0,
     )
     .toFixed(2);
-  const totalDirector = order
-    .reduce(
-      (acumulador, actual) =>
-        acumulador +
-        Number(actual.priceOfferDirector) * Number(actual.quantity),
-      0
-    )
-    .toFixed(2);
+  // const totalDirector = order
+  //   .reduce(
+  //     (acumulador, actual) =>
+  //       acumulador +
+  //       Number(actual.priceOfferDirector) * Number(actual.quantity),
+  //     0
+  //   )
+  //   .toFixed(2);
   const totalPartner = order
     .reduce(
       (acumulador, actual) =>
         acumulador + Number(actual.priceOfferPartner) * Number(actual.quantity),
-      0
+      0,
     )
     .toFixed(2);
+
+  const discount = (Number(subTotal) - Number(totalPartner)).toFixed(2);
 
   useEffect(() => {
     console.log("total");
@@ -59,20 +61,7 @@ const Total = () => {
                 className="w-full"
                 placeholder="Descuento"
                 aria-label="Descuento"
-                disabled
-              />
-            </div>
-          </div>
-          <div>
-            <small className="form-text text-muted">Total Director</small>
-            <div className="input-group">
-              <span className="input-group-prepend">S/.</span>
-              <input
-                type="text"
-                className="w-full"
-                placeholder="Costo de envío"
-                aria-label="Costo de envío"
-                value={totalDirector}
+                value={discount}
                 disabled
               />
             </div>

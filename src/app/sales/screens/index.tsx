@@ -14,7 +14,6 @@ import ListProducts from "../components/ListProducts";
 const Cart: React.FC = () => {
   const order = useSelector((state: RootState) => state.order.order);
   const partner = useSelector((state: RootState) => state.persona.select);
-  const dateSelect = useSelector((state: RootState) => state.persona.date);
   const [partners, setPartners] = useState<Partner[]>([]);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -274,19 +273,6 @@ const Cart: React.FC = () => {
             <small className="form-text text-muted">
               Precio de lista del producto.
             </small>
-          </div>
-          <div className="col-span-1">
-            <div className="input-group">
-              <div className="input-group-prepend">S/.</div>
-              <input
-                type="text"
-                className="w-full"
-                placeholder="Precio Director"
-                value={data.priceOfferDirector}
-                disabled
-              />
-            </div>
-            <small className="form-text text-muted">Precio Director.</small>
           </div>
           <div className="col-span-1">
             <div className="input-group">

@@ -8,24 +8,25 @@ const productRequests = {
     http.get(url, config).then(responseBody),
 };
 
-class ProductService {
-  getSingleProduct(isbn: string): Promise<string[]> {
-    return productRequests.get("", {
-      params: {
-        sku: isbn,
-        isPromoter: true,
-      },
-    });
-  }
-  getByModelOrSku(isbn: string): Promise<Array<string[]>> {
-    // return productRequests.get("?model=" + isbn + "&isList=true");
-    return productRequests.get("", {
-      params: {
-        model: isbn,
-        isList: true,
-      },
-    });
-  }
-}
+const getSingleProduct = (isbn: string): Promise<string[]> => {
+  return productRequests.get("", {
+    params: {
+      sku: isbn,
+      isPromoter: true,
+    },
+  });
+};
+const getByModelOrSku = (isbn: string): Promise<Array<string[]>> => {
+  // return productRequests.get("?model=" + isbn + "&isList=true");
+  return productRequests.get("", {
+    params: {
+      model: isbn,
+      isList: true,
+    },
+  });
+};
 
-export default new ProductService();
+export default {
+  getSingleProduct,
+  getByModelOrSku,
+};

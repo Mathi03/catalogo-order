@@ -19,7 +19,7 @@ const SearchModal: React.FC<PropsSearchModal> = ({
   const [arrayProducts, setArrayProducts] = React.useState<Array<string[]>>([]);
 
   const handleKeyPressModelOrSku = async (
-    e: React.KeyboardEvent<HTMLInputElement>
+    e: React.KeyboardEvent<HTMLInputElement>,
   ) => {
     let {
       currentTarget: { value },

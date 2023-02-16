@@ -8,7 +8,7 @@ const NotificationHandle = (
   message: string,
   description: string = "",
   duration: number = 4.5,
-  placement: NotificationPlacement = "topRight"
+  placement: NotificationPlacement = "topRight",
 ) => {
   notification[type]({ message, description, duration, placement });
 };

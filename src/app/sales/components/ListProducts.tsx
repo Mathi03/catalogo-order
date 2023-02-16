@@ -38,11 +38,9 @@ const ListProducts: React.FC<PropsListProducts> = ({
               </div>
               <div className="flex justify-between">
                 <span>Estado</span>
-                {p.state === 44 ? (
-                  <Tag color="green" className="m-0">Separado</Tag>
-                ) : (
-                  <Tag color="warning" className="m-0">Por Revisar</Tag>
-                )}
+                {p.state === 44
+                  ? <Tag color="green" className="m-0">Separado</Tag>
+                  : <Tag color="warning" className="m-0">Por Revisar</Tag>}
               </div>
               <div className="flex justify-between">
                 <span>Precio Oferta</span>
@@ -68,11 +66,3 @@ const ListProducts: React.FC<PropsListProducts> = ({
   );
 };
 export default ListProducts;
-
-// <div className="row-span-3">
-//   <img src={p.image} className="w-full" alt="Responsive image" />
-// </div>
-// <div className=" col-span-2">
-// </div>
-// <div className="row-span-2 col-span-2">
-// </div>

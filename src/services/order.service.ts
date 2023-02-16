@@ -1,4 +1,4 @@
-import { AxiosRequestConfig,  AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import http from "../http-common";
 
 const responseBody = (response: AxiosResponse) => response.data;
@@ -15,10 +15,14 @@ const orderRequests = {
     http.post<any>(url, body, config).then(responseBody),
 };
 
-class OrderService {
-  createOrder(body: BodyCreate, config: AxiosRequestConfig): Promise<any> {
-    return orderRequests.post("", body, config);
-  }
-}
+const createOrder = (
+  body: BodyCreate,
+): Promise<any> => {
+  return orderRequests.post("", body, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+};
 
-export default new OrderService();
+export default {
+  createOrder,
+};

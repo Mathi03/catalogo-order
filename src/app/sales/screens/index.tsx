@@ -1,4 +1,4 @@
-import React, { Fragment, createRef, useRef, useState } from "react";
+import React, { Fragment, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { decrement, increment } from "../../../store/OrderSlice";
 import { selectPartner, setDate } from "../../../store/PersonaSlice";
@@ -127,7 +127,7 @@ const Cart: React.FC = () => {
 
   const onChangeDatePicker: DatePickerProps["onChange"] = (
     date,
-    dateString
+    dateString,
   ) => {
     dispatch(setDate(dateString));
   };
@@ -151,8 +151,7 @@ const Cart: React.FC = () => {
                 filterOption={(input, option) =>
                   (option?.label ?? "")
                     .toLowerCase()
-                    .includes(input.toLowerCase())
-                }
+                    .includes(input.toLowerCase())}
                 options={partners}
                 value={partner}
               />

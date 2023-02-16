@@ -1,8 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Product from "../types/Product.type";
 import ProductOrder from "../types/ProductOrder.type";
-import NotificationHandle from "../components/NotificationHandle";
-import orderService from "../services/order.service";
 
 interface OrderState {
   order: ProductOrder[];
@@ -47,56 +45,9 @@ export const orderSlice = createSlice({
     cleanOrder: (state) => {
       state.order = [];
     },
-    addOrder: (
-      state,
-      action: PayloadAction<{ partner: string; date: string }>
-    ) => {
-      const { partner, date } = action.payload;
-      if (state.order.length !== 0 && partner && date) {
-        let tempXML = "<Root>";
-        state.order.map((o, i) => {
-          i++;
-          tempXML += '<row id="' + i + '">';
-          tempXML += "<sku>" + o.sku + "</sku>";
-          tempXML += "<nam>" + o.name + "</nam>";
-          tempXML += "<qty>" + o.quantity + "</qty>";
-          tempXML += "<mst>" + o.priceList + "</mst>";
-          tempXML += "<mts>" + o.priceOfferPartner + "</mts>";
-          tempXML += "<mtd>" + o.priceOfferDirector + "</mtd>";
-          tempXML += "<est>" + o.state + "</est>";
-          tempXML += "</row>";
-        });
-        tempXML += "</Root>";
-        let jsonTotal = {
-          fechaCierre: date,
-          xmlDetalle: tempXML,
-          personaIns: window.setting.personId,
-          socioId: partner,
-        };
-        orderService
-          .createOrder(jsonTotal, {
-            headers: { "Content-Type": "multipart/form-data" },
-          })
-          .then((resp) => {
-            console.log("POST", resp);
-            NotificationHandle(
-              "success",
-              "Order Creada",
-              "La order fue grabado con exito."
-            );
-          });
-      } else {
-        NotificationHandle(
-          "error",
-          "Oops...",
-          "Debe agregar al menos una order y seleccionar un socio"
-        );
-      }
-    },
   },
 });
 
-export const { increment, decrement, cleanOrder, addOrder } =
-  orderSlice.actions;
+export const { increment, decrement, cleanOrder } = orderSlice.actions;
 
 export default orderSlice.reducer;
